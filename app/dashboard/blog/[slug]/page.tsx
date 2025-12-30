@@ -1,12 +1,9 @@
-import PostCard from "@/app/components/PostCard";
-import { PostResponse } from "@/app/lib/posts";
+import { Cards } from "@/components/Cards";
+import PostCard from "@/components/PostCard";
+import { fetchPostById } from "@/lib/data/fetchPost";
 
-async function fetchPostById(slug: string) {
-    const BASE_API_URL = process.env.NEXT_PUBLIC_API_URL;
-    const getPost = await fetch(`${BASE_API_URL}/posts/${slug}`);
-    const post: PostResponse = await getPost.json();
-    return post;
-}
+
+
 export default async function Blog(
     {
         params
@@ -21,7 +18,7 @@ export default async function Blog(
                 Blog Post {slug}
             </h1>
 
-            <PostCard
+            <Cards
                 key={post.id}
                 userId={post.userId}
                 id={post.id}
